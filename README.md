@@ -47,8 +47,9 @@ Go to the [Telegram API website](https://my.telegram.org/auth) and log in with y
     ```
 
     Replace `your_api_id`, `your_api_hash`, `your_channel_username`, and `your_phone_number` with your actual Telegram API credentials and channel username.
+    For channel create a telegram private channel and use the invite link in CHANNEL_USERNAMVE field. Any PDF that you forward to this channel would be fetched bu app.py
 
-5. **First Authenticate with your phone number**:
+6. **First Authenticate with your phone number**:
 
     Run the following command to authenticate with your phone number:
 
@@ -58,7 +59,7 @@ Go to the [Telegram API website](https://my.telegram.org/auth) and log in with y
 
     This will send an OTP to your phone number. Enter the OTP to authenticate.
 
-6. **Run the application**:
+7. **Run the application**:
 
     ```bash
     python app.py
