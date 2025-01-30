@@ -1,6 +1,7 @@
 import os
 from telethon import TelegramClient
 from dotenv import load_dotenv
+from tqdm import tqdm
 
 load_dotenv(dotenv_path='session/secrets.env')
 
@@ -30,7 +31,12 @@ async def fetch_pdfs():
             if os.path.exists(file_path):
                 print(f"Skipped: {file_name} (already exists)")
                 continue
-            await message.download_media(file_path)
+            
+            with tqdm(total=message.document.size, unit='B', unit_scale=True, desc=file_name) as pbar:
+                def progress_callback(current, total):
+                    pbar.update(current - pbar.n)
+                
+                await message.download_media(file_path, progress_callback=progress_callback)
             print(f"Downloaded: {file_name}")
 
 client.loop.run_until_complete(fetch_pdfs())
